@@ -2,6 +2,12 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      prerelease:
+        description: Whether this is a pre-release
+        type: boolean
+        required: false
+        default: true
   schedule:
     - cron: '0 0 * * 2-6'
   push:
@@ -13,6 +19,15 @@ on:
 
 
 jobs:
+  prerelease-status:
+    name: Check if this is a pre-release
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.prerelease == 'true' }}
+    steps:
+      - name: Check if this is a pre-release
+        id: prerelease
+        run: echo "KNOPE_PRERELEASE_LABEL=nigthly" >> $GITHUB_ENV
+        shell: bash
 
   build:
     strategy:
