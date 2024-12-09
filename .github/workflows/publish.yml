@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Check if this is a pre-release
         id: prerelease
-        if: ${{ github.event.inputs.prerelease == 'true' }} || github.event_name == 'schedule'
+        if: ${{ github.event.inputs.prerelease == 'true' }} || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
         run: |
           echo "KNOPE_PRERELEASE_LABEL=nigthly" >> "$GITHUB_ENV"
           echo "nigthly=true" >> "$GITHUB_ENV"
