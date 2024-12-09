@@ -1,16 +1,9 @@
-name: Release
+name: Release nightly
 
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 2-6'
-  push:
-    branches:
-      - main
-    paths:
-      - bar/Cargo.toml
-      - cli/Cargo.toml
-
 
 jobs:
   prepare-release:
