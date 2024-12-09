@@ -80,7 +80,7 @@ jobs:
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
         with:
           name: cli-${{ matrix.target }}
-          path: ./dist/test-*
+          path: ./dist/cli-*
           if-no-files-found: error
 
   release:
@@ -113,7 +113,6 @@ jobs:
     name: Publish npm packages
     runs-on: ubuntu-latest
     needs: release
-    environment: npm-publish
     permissions:
       contents: write
       id-token: write
@@ -125,12 +124,6 @@ jobs:
         with:
           pattern: cli-*
           merge-multiple: true
-      - name: Download WASM artifacts
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
-        with:
-          pattern: wasm-*
-          merge-multiple: true
-          path: packages/@biomejs
 
       - name: "Fake Publish"
         run: echo "Fake Publish CLI"
