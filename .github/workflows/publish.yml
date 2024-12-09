@@ -30,7 +30,6 @@ jobs:
         if: ${{ github.event.inputs.prerelease == 'true' }} || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
         run: |
           echo "KNOPE_PRERELEASE_LABEL=nigthly" >> "$GITHUB_ENV"
-          echo "nigthly=true" >> "$GITHUB_ENV"
         shell: bash
 
   build:
