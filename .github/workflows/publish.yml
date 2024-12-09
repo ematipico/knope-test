@@ -22,6 +22,8 @@ jobs:
   prerelease-status:
     name: Check if this is a pre-release
     runs-on: ubuntu-latest
+    outputs:
+      KNOPE_PRERELEASE_LABEL: ${{ env.KNOPE_PRERELEASE_LABEL }}
     steps:
       - name: Check if this is a pre-release
         id: prerelease
