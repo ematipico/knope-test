@@ -22,10 +22,10 @@ jobs:
   prerelease-status:
     name: Check if this is a pre-release
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.prerelease == 'true' }}
     steps:
       - name: Check if this is a pre-release
         id: prerelease
+        if: ${{ github.event.inputs.prerelease == 'true' }}
         run: echo "KNOPE_PRERELEASE_LABEL=nigthly" >> $GITHUB_ENV
         shell: bash
 
