@@ -22,11 +22,15 @@ jobs:
   prerelease-status:
     name: Check if this is a pre-release
     runs-on: ubuntu-latest
+    output:
+      nightly: ${{ env.nightly }}
     steps:
       - name: Check if this is a pre-release
         id: prerelease
-        if: ${{ github.event.inputs.prerelease == 'true' }}
-        run: echo "KNOPE_PRERELEASE_LABEL=nigthly" >> $GITHUB_ENV
+        if: ${{ github.event.inputs.prerelease == 'true' }} || github.event_name == 'schedule'
+        run: |
+          echo "KNOPE_PRERELEASE_LABEL=nigthly" >> "$GITHUB_ENV"
+          echo "nigthly=true" >> "$GITHUB_ENV"
         shell: bash
 
   build:
