@@ -1,6 +1,6 @@
-[packages.foo]
-changelog       = "foo/CHANGELOG.md"
-versioned_files = ["foo/Cargo.toml"]
+[packages.cli]
+changelog       = "cli/CHANGELOG.md"
+versioned_files = ["cli/Cargo.toml"]
 
 [packages.bar]
 changelog       = "bar/CHANGELOG.md"
