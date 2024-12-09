@@ -121,7 +121,7 @@ jobs:
         with:
           version: 0.16.2
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: knope release-nightly --verbose
+      - run: knope release --verbose
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
