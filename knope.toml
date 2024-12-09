@@ -56,7 +56,7 @@ template = "This PR was automatically created via workflow. Merging it will crea
 
 # The release workflow that will run in CI. It is triggered when the prepare-release PR is merged
 [[workflows]]
-name = "nightly"
+name = "prepare-nightly"
 
 [[workflows.steps]]
 type = "PrepareRelease"
@@ -66,11 +66,20 @@ allow_empty = true
 
 [[workflows.steps]]
 type = "Command"
+# Workaround to update the lock files
+# https://github.com/knope-dev/knope/issues/162
+command = "cargo update -w"
+
+[[workflows.steps]]
+type = "Command"
 command = "git commit -am \"release: nightly \""
 
 [[workflows.steps]]
 type = "Command"
 command = "git push origin main"
+
+[[workflows]]
+name = "release-nightly"
 
 [[workflows.steps]]
 type = "Release"
