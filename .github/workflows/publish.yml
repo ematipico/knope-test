@@ -147,3 +147,4 @@ jobs:
         with:
           no-verify: true
           dry-run: true
+          check-repo: true
