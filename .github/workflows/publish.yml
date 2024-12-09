@@ -166,7 +166,7 @@ jobs:
         run: echo "Fake Publish CLI"
 
 
-  publish-crate:
+  publish-crates:
     name: Publish crates
     needs: release
     runs-on: ubuntu-latest
@@ -182,4 +182,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: katyo/publish-crates@v2
         with:
-          registry-token: ${{ secrets.CARGO_TOKEN }}
+          no-verify: true
+          dry-run: true
