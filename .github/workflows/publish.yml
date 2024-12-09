@@ -30,6 +30,7 @@ jobs:
         shell: bash
 
   build:
+    needs: prerelease-status
     strategy:
       matrix:
         include:
