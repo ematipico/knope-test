@@ -22,8 +22,6 @@ jobs:
   prerelease-status:
     name: Check if this is a pre-release
     runs-on: ubuntu-latest
-    output:
-      nightly: ${{ env.nightly }}
     steps:
       - name: Check if this is a pre-release
         id: prerelease
