@@ -1,3 +1,9 @@
+## 0.1.2-nightly.2 (2024-12-09)
+
+### Fixes
+
+- Another patch
+
 ## 0.1.2-nightly.1 (2024-12-09)
 
 ### Fixes
