@@ -13,29 +13,6 @@ on:
 
 
 jobs:
-  retrieve-version:
-    if: github.head_ref == 'release/automated-ci' && github.event.pull_request.merged == true
-    name: Retrieve version
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ env.version }}
-      version_changed: ${{ steps.version.outputs.changed }}
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Check version changes
-        uses: EndBug/version-check@36ff30f37c7deabe56a30caa043d127be658c425 # v2.1.5
-        id: version
-        with:
-          diff-search: true
-          file-name: packages/@biomejs/biome/package.json
-
-      - name: Set version name
-        if: steps.version.outputs.changed == 'true'
-        run: |
-          echo "Version change found! New version: ${{ steps.version.outputs.version }} (${{ steps.version.outputs.version_type }})"
-          echo "version=${{ steps.version.outputs.version }}" >> $GITHUB_ENV
-
 
   build:
     strategy:
@@ -49,11 +26,6 @@ jobs:
             code-target: darwin-arm64
     name: Package ${{ matrix.code-target }}
     runs-on: ${{ matrix.os }}
-    needs: retrieve-version
-    env:
-      version: ${{ needs.check.outputs.version }}
-    outputs:
-      version: ${{ env.version }}
 
     steps:
       - name: Checkout repository
@@ -84,26 +56,24 @@ jobs:
 
       # Build the CLI binary
       - name: Build binaries
-        run: cargo build -p biome_cli --release --target ${{ matrix.target }}
+        run: cargo build -p cli --release --target ${{ matrix.target }}
         env:
           CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
           CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER: aarch64-linux-gnu-gcc
           # Strip all debug symbols from the resulting binaries
           RUSTFLAGS: "-C strip=symbols -C codegen-units=1"
-          # Inline the version of the npm package in the CLI binary
-          BIOME_VERSION: ${{ env.version }}
 
       # Copy the CLI binary and rename it to include the name of the target platform
       - name: Copy CLI binary
         if: matrix.os == 'windows-2022'
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/biome.exe ./dist/biome-${{ matrix.code-target }}.exe
+          cp target/${{ matrix.target }}/release/cli.exe ./dist/cli-${{ matrix.code-target }}.exe
       - name: Copy CLI binary
         if: matrix.os != 'windows-2022'
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/biome ./dist/biome-${{ matrix.code-target }}
+          cp target/${{ matrix.target }}/release/cli ./dist/cli-${{ matrix.code-target }}
 
 
       - name: Upload Artifact
