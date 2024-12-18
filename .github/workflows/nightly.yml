@@ -93,19 +93,19 @@ jobs:
         if: matrix.os == 'windows-2022'
         run: |
           mkdir ${{ env.archive_folder }}
-          cp target/${{ matrix.target }}/release/cli.exe ${{ env.archive_folder }}/${{ matrix.code-target }}.exe
+          cp target/${{ matrix.target }}/release/cli.exe ./${{ env.archive_folder }}/${{ matrix.code-target }}.exe
       - name: Copy CLI binary
         if: matrix.os != 'windows-2022'
         run: |
           mkdir ${{ env.archive_folder }}
-          cp target/${{ matrix.target }}/release/cli ${{ env.archive_folder }}/${{ matrix.code-target }}
+          cp target/${{ matrix.target }}/release/cli ./${{ env.archive_folder }}/${{ matrix.code-target }}
 
 
       - name: Upload Artifact
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
         with:
           name: ${{ matrix.target }}
-          path: ${{ env.archive_folder }}
+          path: ./${{ env.archive_folder }}
           if-no-files-found: error
 
   release:
