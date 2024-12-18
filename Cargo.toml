@@ -3,3 +3,7 @@
 # https://doc.rust-lang.org/cargo/reference/resolver.html#resolver-versions
 members  = ["cli", "bar"]
 resolver = "2"
+
+
+[workspace.dependencies]
+bar = { path = "./crates/bar" }
