@@ -1,7 +1,7 @@
 [packages.cli]
 changelog       = "cli/CHANGELOG.md"
 versioned_files = ["cli/Cargo.toml", "Cargo.lock"]
-# assets = "cli-*"
+assets = "artefacts/cli-*"
 
 [packages.bar]
 changelog       = "bar/CHANGELOG.md"
