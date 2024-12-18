@@ -4,8 +4,8 @@ version = 3
 
 [[package]]
 name = "bar"
-version = "0.1.5"
+version = "0.1.6-nightly.0"
 
 [[package]]
 name = "cli"
-version = "0.1.5-nightly.2"
+version = "0.1.5-nightly.3"

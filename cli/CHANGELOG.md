@@ -1,3 +1,9 @@
+## 0.1.5-nightly.3 (2024-12-18)
+
+### Fixes
+
+- Let's test a nightly
+
 ## 0.1.5-nightly.2 (2024-12-18)
 
 ### Fixes
