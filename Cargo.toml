@@ -6,4 +6,4 @@ resolver = "2"
 
 
 [workspace.dependencies]
-bar = { path = "./crates/bar" }
+bar = { path = "./crates/bar", version = "0.1.3" }
