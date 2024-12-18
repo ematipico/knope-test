@@ -1,3 +1,9 @@
+## 0.1.2-nightly.26 (2024-12-18)
+
+### Features
+
+- Another minor
+
 ## 0.1.2-nightly.25 (2024-12-18)
 
 ### Features
