@@ -100,12 +100,15 @@ jobs:
           mkdir ${{ env.archive_folder }}
           cp target/${{ matrix.target }}/release/cli ./${{ env.archive_folder }}/cli-${{ matrix.code-target }}
 
+      - name: Create Tar Archive
+        run: tar -czf cli-${{ matrix.code-target }}.tgz cli-${{ matrix.code-target }}
+
 
       - name: Upload Artifact
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
         with:
           name: cli-${{ matrix.target }}
-          path: ./${{ env.archive_folder }}
+          path: cli-${{ matrix.target }}.tgz
           if-no-files-found: error
 
   release:
