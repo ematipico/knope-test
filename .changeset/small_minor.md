@@ -1,5 +1,0 @@
----
-cli: minor
----
-
-# Another minor

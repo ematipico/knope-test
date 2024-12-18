@@ -1,3 +1,13 @@
+## 0.1.2 (2024-12-18)
+
+### Features
+
+- Another minor
+
+### Fixes
+
+- Another patch
+
 ## 0.1.2-nightly.7 (2024-12-18)
 
 ### Features
