@@ -1,10 +1,10 @@
 [packages.cli]
 versioned_files = ["cli/Cargo.toml", "Cargo.lock"]
-changelog = "crates/cli/CHANGELOG.md"
+changelog = "cli/CHANGELOG.md"
 
 [packages.bar]
 versioned_files = ["bar/Cargo.toml", { path = "Cargo.toml", dependency = "bar" }, "Cargo.lock"]
-changelog = "crates/bar/CHANGELOG.md"
+changelog = "bar/CHANGELOG.md"
 
 # Workflow to create a changeset
 [[workflows]]
