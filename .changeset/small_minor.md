@@ -1,0 +1,5 @@
+---
+cli: minor
+---
+
+# Another minor
