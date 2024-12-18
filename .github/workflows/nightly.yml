@@ -49,7 +49,7 @@ jobs:
     name: Package ${{ matrix.code-target }}
     runs-on: ${{ matrix.os }}
     env:
-      archive_name: artifact
+      archive_folder: artifact
       package_name: cli
 
     steps:
