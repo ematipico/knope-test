@@ -1,6 +1,6 @@
 [package]
 name = "cli"
-version = "0.1.2-nightly.15"
+version = "0.1.2-nightly.16"
 edition = "2021"
 
 [[bin]]
