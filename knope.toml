@@ -3,19 +3,77 @@ versioned_files = ["cli/Cargo.toml", "Cargo.lock"]
 scopes = ["cli"]
 
 [packages.bar]
-versioned_files = ["bar/Cargo.toml", "Cargo.lock"]
+versioned_files = ["bar/Cargo.toml", { path = "Cargo.toml", dependency = "bar" }, "Cargo.lock"]
 scopes = ["bar"]
 
+# Workflow to create a changeset
 [[workflows]]
-name = "release"
+name = "document-change"
+
+[[workflows.steps]]
+type = "CreateChangeFile"
+# end-workflow
+
+
+[[workflows]]
+name = "prepare-release"
+[[workflows.steps]]
+command = "git switch -c release/automated-ci"
+type    = "Command"
 
 [[workflows.steps]]
 type = "PrepareRelease"
+# we have been following conventional commits, although inside the monorepo it's difficult to define scopes
 ignore_conventional_commits = true
 
 [[workflows.steps]]
 type = "Command"
-command = 'git commit -m "chore: prepare releases"'
+# Workaround to update the lock files
+# https://github.com/knope-dev/knope/issues/162
+command = "cargo update -w"
+
+[[workflows.steps]]
+type = "Command"
+# WARNING: if you change this message, remember to update the `prepare_release.yml` too, because it uses this message
+command = "git commit -am \"chore: prepare release\""
+
+[[workflows.steps]]
+# WARNING: if you change the name of the branch, update `prepare_release.yml` too
+command = "git push --force-with-lease --set-upstream origin release/automated-ci"
+type    = "Command"
+
+[[workflows.steps]]
+base = "main"
+type = "CreatePullRequest"
+
+[workflows.steps.title]
+template = "chore: prepare release"
+
+[workflows.steps.body]
+template = "This PR was automatically created via workflow. Merging it will create a new release of the Biome packages and crates."
+# end-workflow
+
+
+# The release workflow that will run in CI. It is triggered when the prepare-release PR is merged
+[[workflows]]
+name = "prepare-nightly"
+
+[[workflows.steps]]
+type = "PrepareRelease"
+ignore_conventional_commits = true
+prerelease_label = "nightly"
+allow_empty = true
+
+[[workflows.steps]]
+type = "Command"
+# Workaround to update the lock files
+# https://github.com/knope-dev/knope/issues/162
+command = "cargo update -w"
+
+[[workflows.steps]]
+type = "Command"
+command = "git commit -am 'nightly release'"
+
 
 [[workflows.steps]]
 type = "Command"
@@ -27,12 +85,6 @@ name = "release"
 
 [[workflows.steps]]
 type = "Release"
-
-[[workflows]]
-name = "document-change"
-
-[[workflows.steps]]
-type = "CreateChangeFile"
 
 [github]
 owner = "ematipico"
