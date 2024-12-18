@@ -1,5 +1,0 @@
----
-bar: minor
----
-
-# Another minor
