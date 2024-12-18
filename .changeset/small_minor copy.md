@@ -1,5 +1,5 @@
 ---
-bar: minor
+cli: minor
 ---
 
 # Another minor
