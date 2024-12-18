@@ -1,12 +1,12 @@
 [packages.cli]
 changelog       = "cli/CHANGELOG.md"
 versioned_files = ["cli/Cargo.toml", "Cargo.lock"]
-[[packages.cli.assets]]
-path = "artefacts/cli-x86_64-unknown-linux-gnu"
-name = "x86_64-unknown-linux-gnu"
-[[packages.cli.assets]]
-path = "artefacts/cli-aarch64-apple-darwin"
-name = "aarch64-apple-darwin"
+# [[packages.cli.assets]]
+# path = "artefacts/cli-x86_64-unknown-linux-gnu"
+# name = "x86_64-unknown-linux-gnu"
+# [[packages.cli.assets]]
+# path = "artefacts/cli-aarch64-apple-darwin"
+# name = "aarch64-apple-darwin"
 
 [packages.bar]
 changelog       = "bar/CHANGELOG.md"
