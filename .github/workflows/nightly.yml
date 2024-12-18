@@ -49,7 +49,8 @@ jobs:
     name: Package ${{ matrix.code-target }}
     runs-on: ${{ matrix.os }}
     env:
-      archive_folder: artefact
+      archive_name: artifact
+      package_name: cli
 
     steps:
       - name: Checkout repository
@@ -82,16 +83,16 @@ jobs:
 
       # Build the CLI binary
       - name: Build binaries
-        run: cargo build -p cli --release --target ${{ matrix.target }}
+        run: cargo build -p ${{ env.package_name }} --release --target ${{ matrix.target }}
 
       - name: Copy CLI binary
         if: matrix.os == 'windows-2022'
         run: |
-          cp target/${{ matrix.target }}/release/cli.exe ${{ env.archive_folder }}
+          cp target/${{ matrix.target }}/release/${{ env.package_name }}.exe ${{ env.archive_folder }}
       - name: Copy CLI binary
         if: matrix.os != 'windows-2022'
         run: |
-          cp target/${{ matrix.target }}/release/cli ${{ env.archive_folder }}
+          cp target/${{ matrix.target }}/release/${{ env.package_name }} ${{ env.archive_folder }}
 
       - name: Create Tar Archive
         run: tar -czf ${{ env.archive_folder }}.tgz ${{ env.archive_folder }}
