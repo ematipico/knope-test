@@ -8,4 +8,4 @@ version = "0.1.2"
 
 [[package]]
 name = "cli"
-version = "0.1.2-nightly.14"
+version = "0.1.2-nightly.15"
