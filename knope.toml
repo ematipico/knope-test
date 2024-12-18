@@ -1,8 +1,10 @@
 [packages.cli]
 versioned_files = ["cli/Cargo.toml", "Cargo.lock"]
+changelog = "crates/cli/CHANGELOG.md"
 
 [packages.bar]
 versioned_files = ["bar/Cargo.toml", { path = "Cargo.toml", dependency = "bar" }, "Cargo.lock"]
+changelog = "crates/bar/CHANGELOG.md"
 
 # Workflow to create a changeset
 [[workflows]]
@@ -23,6 +25,7 @@ type    = "Command"
 type = "PrepareRelease"
 # we have been following conventional commits, although inside the monorepo it's difficult to define scopes
 ignore_conventional_commits = true
+allow_empty = true
 
 [[workflows.steps]]
 type = "Command"
