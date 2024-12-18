@@ -77,7 +77,7 @@ command = "git commit -am 'nightly release'"
 
 [[workflows.steps]]
 type = "Command"
-command = "git push origin main"
+command = "git push"
 
 # The release workflow that will run in CI. It is triggered when the prepare-release PR is merged
 [[workflows]]
