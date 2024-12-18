@@ -1,10 +1,6 @@
 [package]
 name = "cli"
-<<<<<<< HEAD
-version = "0.1.2"
-=======
 version = "0.1.2-nightly.27"
->>>>>>> main
 edition = "2021"
 
 [[bin]]
