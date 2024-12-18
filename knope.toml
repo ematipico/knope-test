@@ -61,14 +61,7 @@ allow_empty = true
 
 [[workflows.steps]]
 type = "Command"
-# Workaround to update the lock files
-# https://github.com/knope-dev/knope/issues/162
-command = "cargo update -w"
-
-[[workflows.steps]]
-type = "Command"
-command = "git commit -am 'nightly release'"
-
+command = "git commit -m 'nightly release'"
 
 [[workflows.steps]]
 type = "Command"
