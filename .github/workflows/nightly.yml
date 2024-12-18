@@ -83,11 +83,6 @@ jobs:
       # Build the CLI binary
       - name: Build binaries
         run: cargo build -p cli --release --target ${{ matrix.target }}
-        env:
-          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
-          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER: aarch64-linux-gnu-gcc
-          # Strip all debug symbols from the resulting binaries
-          RUSTFLAGS: "-C strip=symbols -C codegen-units=1"
 
       - name: Copy CLI binary
         if: matrix.os == 'windows-2022'
