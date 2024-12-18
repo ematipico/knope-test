@@ -1,3 +1,13 @@
+## 0.1.2 (2024-12-18)
+
+### Features
+
+- Another minor
+
+### Fixes
+
+- Foo
+
 ## 0.1.2-nightly.27 (2024-12-18)
 
 ### Features
